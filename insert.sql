@@ -59,3 +59,5 @@ SET status = 'booked';
 	Values ('5','booked','2 room',1,2)
 
  select * from  room
+
+
