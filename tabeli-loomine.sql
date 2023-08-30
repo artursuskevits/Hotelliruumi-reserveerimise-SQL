@@ -37,3 +37,12 @@ CREATE TABLE room(
 	room_typeID int Foreign Key References room_type(room_typeID));
 
  select * from  room
+
+ CREATE TABLE occupled_room(
+    occupled_roomID int PRIMARY KEY identity(1,1),
+    check_in timestamp ,
+	check_out datetime ,
+	reservationID int  FOREIGN KEY REFERENCES reservation(reservationID),
+	roomID int FOREIGN KEY REFERENCES room(roomID));
+
+ select * from  occupled_room
