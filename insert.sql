@@ -31,3 +31,18 @@ Insert Into  guest (first_name,last_name,member_since)
 	Insert Into reservation(date_in,date_out,made_by,guestID)
 	Values ('2022-12-24','2022-12-26','ID',5);
  select * from reservation
+
+	Insert Into reserved_room(number_of_rooms,reservationID,room_typeID,)
+	Values (1,1,1);
+	Insert Into reserved_room(number_of_rooms,reservationID,room_typeID,)
+	Values (2,2,2);
+	Insert Into reserved_room(number_of_rooms,reservationID,room_typeID,)
+	Values (3,3,3);
+	Insert Into reserved_room(number_of_rooms,reservationID,room_typeID)
+	Values (4,4,2);
+	Insert Into reserved_room(number_of_rooms,reservationID,room_typeID)
+	Values (5,5,3);
+UPDATE reserved_room
+SET status = 'booked'; 
+
+ select * from reserved_room
