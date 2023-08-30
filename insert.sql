@@ -73,3 +73,19 @@ SET status = 'booked';
 
  select * from  occupled_room
 
+
+	Insert Into hosted_at(occupled_roomID, guestID)
+	Values (5,3);
+	Insert Into hosted_at(occupled_roomID, guestID)
+	Values (4,2);
+	Insert Into hosted_at(occupled_roomID, guestID)
+	Values (3,1);
+	Insert Into hosted_at(occupled_roomID, guestID)
+	Values (1,4);
+	Insert Into hosted_at(occupled_roomID, guestID)
+	Values (2,5);
+
+ select * from  hosted_at
+
+
+
