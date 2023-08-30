@@ -46,3 +46,16 @@ UPDATE reserved_room
 SET status = 'booked'; 
 
  select * from reserved_room
+
+	Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('1','booked','1 room',1,2);
+	Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('2','booked','5 room',0,1)
+	Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('3','booked','4 room',1,3)
+	Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('4','booked','3 room',0,1)
+	Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('5','booked','2 room',1,2)
+
+ select * from  room
