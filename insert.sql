@@ -60,4 +60,16 @@ SET status = 'booked';
 
  select * from  room
 
+	Insert Into occupled_room(check_in, check_out,reservationID,roomID )
+	Values ('2024-12-26','2024-12-26',1,5);
+	Insert Into occupled_room(check_in, check_out,reservationID,roomID )
+	Values ('2024-12-26','2024-12-26',2,4);
+	Insert Into occupled_room(check_in, check_out,reservationID,roomID )
+	Values ('2024-12-26','2024-12-26',3,3);
+	Insert Into occupled_room(check_in, check_out,reservationID,roomID )
+	Values ('2024-12-26','2024-12-26',4,2);
+	Insert Into occupled_room(check_in, check_out,reservationID,roomID )
+	Values ('2024-12-26','2024-12-26',5,1);
+
+ select * from  occupled_room
 
