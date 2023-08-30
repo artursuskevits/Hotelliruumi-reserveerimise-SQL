@@ -18,3 +18,22 @@ CREATE TABLE guest(
     made_by varchar(20) UNIQUE,
     guestID int  FOREIGN KEY REFERENCES guest(guestID));
  select * from reservation
+
+ CREATE TABLE reserved_room(
+    reserved_roomID int PRIMARY KEY identity(1,1),
+    status varchar(20) ,
+	number_of_rooms int,
+    reservationID int  FOREIGN KEY REFERENCES reservation(reservationID),
+	room_typeID int Foreign Key References room_type(room_typeID));
+
+ select * from reserved_room
+
+CREATE TABLE room(
+    roomID int PRIMARY KEY identity(1,1),
+    number varchar(10) ,
+	status varchar(10) ,
+	name varchar(40) ,
+	smoke BIT,
+	room_typeID int Foreign Key References room_type(room_typeID));
+
+ select * from  room
