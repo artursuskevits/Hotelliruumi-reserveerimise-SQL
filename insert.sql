@@ -19,3 +19,15 @@ Insert Into  guest (first_name,last_name,member_since)
  Values ('Dylan','Gdeon','2022-12-24');
 
  select * from guest
+
+	Insert Into reservation(date_in,date_out,made_by,guestID)
+	Values ('2022-12-24','2022-12-26','ID',1);
+	Insert Into reservation(date_in,date_out,made_by,guestID)
+	Values ('2022-12-24','2022-12-26','ID',2);
+	Insert Into reservation(date_in,date_out,made_by,guestID)
+	Values ('2022-12-24','2022-12-26','ID',3);
+	Insert Into reservation(date_in,date_out,made_by,guestID)
+	Values ('2022-12-24','2022-12-26','ID',4);
+	Insert Into reservation(date_in,date_out,made_by,guestID)
+	Values ('2022-12-24','2022-12-26','ID',5);
+ select * from reservation
