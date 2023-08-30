@@ -46,3 +46,10 @@ CREATE TABLE room(
 	roomID int FOREIGN KEY REFERENCES room(roomID));
 
  select * from  occupled_room
+
+  CREATE TABLE hosted_at(
+    hosted_atID int PRIMARY KEY identity(1,1),
+	occupled_roomID int FOREIGN KEY REFERENCES occupled_room(occupled_roomID),
+	guestID int  FOREIGN KEY REFERENCES guest(guestID));
+
+ select * from  hosted_at
