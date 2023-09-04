@@ -11,3 +11,6 @@ Kuupaev DATETIME,
 Kasutaja VARCHAR(100),
 Andmed TEXT,
 Tegevus varchar(100))
+
+INSERT INTO logi(Kuupaev,Kasutaja,Andmed,Tegevus)
+VALUES(NOW(),USER,NEW.last_name,'guest on lisattud')
