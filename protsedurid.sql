@@ -46,4 +46,18 @@ end;
  
 Exec Count_guests ;
 ------Create my
+ne dodelal
+create procedure Showallguestwhohavecharinname
+@char varchar (1),
+as
+begin
+
+if first_name = %@char%
+Set @sqltegevus = CONCat ('Alter Table ', @tabelnimi, ' ADD ', @veerunimi, ' ',@tyyp);
+execute (@sqltegevus)
+if @valik='kustuta'
+set @tyyp = 0;
+Set @sqltegevus = CONCat ('Alter Table ', @tabelnimi, ' Drop Column ', @veerunimi);
+execute (@sqltegevus)
+end;
 
