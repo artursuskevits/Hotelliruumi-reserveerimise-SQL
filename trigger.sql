@@ -4,3 +4,10 @@ CREATE TABLE guest(
 	last_name varchar(80) Null ,
     member_since date);
  select * from guest
+
+CREATE TABLE logi(
+ Id INT PRIMARY KEY AUTO_INCREMENT,
+Kuupaev DATETIME,
+Kasutaja VARCHAR(100),
+Andmed TEXT,
+Tegevus varchar(100))
