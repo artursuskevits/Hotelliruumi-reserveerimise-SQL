@@ -65,3 +65,28 @@ SET linn= 'Maardu'
 WHERE linnid = 1; 
 select * from linn;
 select * from logi;
+
+insert into maakond(maakond)
+values('Harjumaa');
+insert into maakond(maakond)
+values('Parnumaa');
+insert into maakond(maakond)
+values('Tartumaa');
+insert into maakond(maakond)
+values('Ida-Virumaa')
+insert into maakond(maakond)
+values('Võrumaa')
+Select * from maakond;
+
+insert into linn(linn,maakondid)
+values ('Tallinn',1)
+insert into linn(linn,maakondid)
+values ('Pärnu',2)
+insert into linn(linn,maakondid)
+values ('Tartu',3)
+insert into linn(linn,maakondid)
+values ('Narva',4)
+insert into linn(linn,maakondid)
+values ('Võru',5)
+select * from linn;
+select * from logi;
