@@ -41,7 +41,27 @@ Insert Into room(number,status,name,smoke,room_typeID)
 	select * from  room;
 	select* from logi;
 -- Trigger muudetud kirjete jälgimiseks linnad tabeli:
+	CREATE TRIGGER roomuuendamine
+ON room
+AFTER UPDATE
+AS 
+BEGIN
+    INSERT INTO logi (kuupaev, andmed, kasutaja)
+    SELECT GETDATE(),
+           CONCAT('Vanad andmed: ',deleted.number,', ',deleted.status,', ',deleted.name,', ',rt1.description,
+		   ' Uued andmed: ',inserted.number,', ',inserted.status,', ',inserted.name,', ',rt2.description),
+           USER
+    FROM deleted
+    INNER JOIN room_type rt1 ON deleted.room_typeID = rt1.room_typeID
+	INNER JOIN inserted ON deleted.room_typeID = inserted.room_typeID
+    INNER JOIN room_type rt2 ON inserted.room_typeID = rt2.room_typeID
+END;
 
+update room
+set number='2',status='unreserved'
+where roomID =1;
+select * from  room;
+	select* from logi;
 
 
 
