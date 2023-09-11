@@ -105,3 +105,14 @@ FROM linn l
 INNER JOIN maakond m
 ON l.maakondid = m.maakondid
 WHERE l.linnid = new.linnid
+
+
+
+INSERT INTO logi (kuupaev, andmed, kasutaja)
+    SELECT now(),
+           CONCAT('Vanad andmed: ',old.linn,', ',m1.maakond,' Uued andmed: ',new.linn, ', ', m2.maakond),
+           USER
+    FROM linn l
+    INNER JOIN maakond m1 ON old.maakondid = m1.maakondid
+    INNER JOIN maakond m2 ON new.maakondid = m2.maakondid
+    where l.linnid = new.linnid
