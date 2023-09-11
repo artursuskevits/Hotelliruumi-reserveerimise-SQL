@@ -104,3 +104,18 @@ Insert Into room(number,status,name,smoke,room_typeID)
 	Values ('1','booked','first room',1,2);
 	select * from  room;
 	select* from logi;
+-- Trigger muudetud kirjete jälgimiseks linnad tabeli:
+INSERT INTO logi (kuupaev, andmed, kasutaja)
+    SELECT now(),
+           CONCAT('Vanad andmed: ',old.number,', ',old.status,', ',old.name,', ',rt1.description,' Uued andmed: ',new.number,', ',new.status,', ',new.name,', ',rt2.description),
+           USER()
+    FROM room r
+    INNER JOIN room_type rt1 ON old.room_typeID = rt1.room_typeID
+    INNER JOIN room_type rt2 ON new.room_typeID = rt2.room_typeID
+    where r.roomID = new.roomID
+--Kontroll
+update room
+set number='2',status='unreserved'
+where roomID =8;
+select * from  room;
+	select* from logi;
