@@ -18,3 +18,11 @@ andmed text,
 kuupaev datetime,
 kasutaja varchar(100)
 );
+
+insert into maakond(maakond)
+values('Harjumaa');
+insert into maakond(maakond)
+values('Parnumaa');
+insert into maakond(maakond)
+values('Tartumaa');
+Select * from maakond;
