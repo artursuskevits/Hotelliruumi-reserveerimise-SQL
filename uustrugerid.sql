@@ -90,3 +90,18 @@ insert into linn(linn,maakondid)
 values ('Võru',5)
 select * from linn;
 select * from logi;
+
+
+
+
+XAMPPPPP
+
+
+INSERT INTO logi (kuupaev, andmed, kasutaja)
+SELECT NOW(),
+       CONCAT(new.linn, ', ', m.maakond),
+       USER()
+FROM linn l
+INNER JOIN maakond m
+ON l.maakondid = m.maakondid
+WHERE l.linnid = new.linnid
