@@ -67,3 +67,9 @@ select * from  room;
 
 
 --XAMPP
+--Tabelite loomine
+CREATE TABLE room_type(
+    room_typeID int PRIMARY KEY AUTO_INCREMENT,
+    description varchar(80),
+    max_capacity int);
+select * from room_type
