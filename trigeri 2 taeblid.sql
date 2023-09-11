@@ -99,7 +99,6 @@ Insert Into room(number,status,name,smoke,room_typeID)
 	select * from  room;
 	select* from logi;
 -- Trigger muudetud kirjete jälgimiseks linnad tabeli:
-DROP TRIGGER IF EXISTS `roomuendamine`;
 CREATE DEFINER=`root`@`localhost` 
 	TRIGGER `roomuendamine` 
 	BEFORE UPDATE ON `room` 
