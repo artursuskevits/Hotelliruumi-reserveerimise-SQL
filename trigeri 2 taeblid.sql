@@ -1,5 +1,6 @@
 --SQL
 --Delaju na osnove room_type i room
+--Tabelite loomine
 CREATE TABLE room_type(
     room_typeID int PRIMARY KEY identity(1,1),
     description varchar(80),
@@ -14,7 +15,7 @@ CREATE TABLE room(
 	smoke BIT,
 	room_typeID int Foreign Key References room_type(room_typeID));
 
-
+room_type täitmine
 INSERT INTO room_type (description, max_capacity)
 VALUES ('lux',1);
 INSERT INTO room_type (description, max_capacity)
@@ -35,7 +36,7 @@ BEGIN
     FROM inserted
     inner join room_type rt on inserted.room_typeID =rt.room_typeID
 END;
-
+--Kontroll
 Insert Into room(number,status,name,smoke,room_typeID)
 	Values ('1','booked','first room',1,2);
 	select * from  room;
@@ -56,7 +57,7 @@ BEGIN
 	INNER JOIN inserted ON deleted.room_typeID = inserted.room_typeID
     INNER JOIN room_type rt2 ON inserted.room_typeID = rt2.room_typeID
 END;
-
+--Kontroll
 update room
 set number='2',status='unreserved'
 where roomID =1;
