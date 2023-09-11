@@ -26,3 +26,16 @@ values('Parnumaa');
 insert into maakond(maakond)
 values('Tartumaa');
 Select * from maakond;
+
+CREATE TRIGGER linnalisamine
+ON linn
+FOR INSERT
+AS 
+BEGIN
+    INSERT INTO logi (kuupaev, andmed, kasutaja)
+    SELECT GETDATE(),
+           CONCAT(inserted.linn, ', ', m.maakond),
+           USER
+    FROM inserted
+    INNER JOIN maakond m ON inserted.maakondid = m.maakondid
+END;
