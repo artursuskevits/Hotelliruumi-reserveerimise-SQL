@@ -15,7 +15,7 @@ CREATE TABLE room(
 	smoke BIT,
 	room_typeID int Foreign Key References room_type(room_typeID));
 
-room_type täitmine
+--room_type täitmine
 INSERT INTO room_type (description, max_capacity)
 VALUES ('lux',1);
 INSERT INTO room_type (description, max_capacity)
@@ -73,3 +73,20 @@ CREATE TABLE room_type(
     description varchar(80),
     max_capacity int);
 select * from room_type
+
+CREATE TABLE room (
+    roomID INT PRIMARY KEY AUTO_INCREMENT,
+    number VARCHAR(10),
+    status VARCHAR(10),
+    name VARCHAR(40),
+    smoke BIT,
+    room_typeID INT,
+    FOREIGN KEY (room_typeID) REFERENCES room_type(room_typeID)
+);
+--room_type täitmine
+INSERT INTO room_type (description, max_capacity)
+VALUES ('lux',1);
+INSERT INTO room_type (description, max_capacity)
+VALUES ('default',2);
+INSERT INTO room_type (description, max_capacity)
+VALUES ('cheap',3);
