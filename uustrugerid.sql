@@ -39,3 +39,8 @@ BEGIN
     FROM inserted
     INNER JOIN maakond m ON inserted.maakondid = m.maakondid
 END;
+
+insert into linn(linn,maakondid)
+values ('Tallinn',1)
+select * from linn;
+select * from logi;
