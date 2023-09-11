@@ -90,3 +90,17 @@ INSERT INTO room_type (description, max_capacity)
 VALUES ('default',2);
 INSERT INTO room_type (description, max_capacity)
 VALUES ('cheap',3);
+--rigger tabelisse lisatud kirjete jälgimiseks:
+INSERT INTO logi (kuupaev, andmed, kasutaja)
+    SELECT now(),
+           CONCAT(new.number,', ',new.status,', ',new.name,', ',rt.description),
+           USER()
+    FROM room r
+    INNER JOIN room_type rt
+    ON r.room_typeID = rt.room_typeID
+WHERE r.roomID = new.roomID
+--Kontroll
+Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('1','booked','first room',1,2);
+	select * from  room;
+	select* from logi;
