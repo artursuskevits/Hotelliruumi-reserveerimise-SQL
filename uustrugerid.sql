@@ -59,3 +59,9 @@ BEGIN
 	INNER JOIN inserted ON deleted.linnid = inserted.linnid
     INNER JOIN maakond m2 ON inserted.maakondid = m2.maakondid
 END;
+
+UPDATE linn
+SET linn= 'Maardu'
+WHERE linnid = 1; 
+select * from linn;
+select * from logi;
