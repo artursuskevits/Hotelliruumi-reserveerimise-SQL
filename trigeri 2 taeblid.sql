@@ -15,5 +15,15 @@ CREATE TABLE room(
 	room_typeID int Foreign Key References room_type(room_typeID));
 
 
+INSERT INTO room_type (description, max_capacity)
+VALUES ('lux',1);
+INSERT INTO room_type (description, max_capacity)
+VALUES ('default',2);
+INSERT INTO room_type (description, max_capacity)
+VALUES ('cheap',3);
+ 
+select * from room_type
+
+
 
 --XAMPP
