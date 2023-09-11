@@ -84,20 +84,14 @@ CREATE TABLE room (
     FOREIGN KEY (room_typeID) REFERENCES room_type(room_typeID)
 );
 --room_type täitmine
-INSERT INTO room_type (description, max_capacity)
-VALUES ('lux',1);
-INSERT INTO room_type (description, max_capacity)
-VALUES ('default',2);
-INSERT INTO room_type (description, max_capacity)
-VALUES ('cheap',3);
---rigger tabelisse lisatud kirjete jälgimiseks:
-INSERT INTO logi (kuupaev, andmed, kasutaja)
-    SELECT now(),
-           CONCAT(new.number,', ',new.status,', ',new.name,', ',rt.description),
-           USER()
-    FROM room r
-    INNER JOIN room_type rt
-    ON r.room_typeID = rt.room_typeID
+CREATE DEFINER=`root`@`localhost` TRIGGER `roomlisamine`
+AFTER INSERT ON `room`
+FOR EACH ROW INSERT INTO logi (kuupaev, andmed, kasutaja) 
+SELECT now(), CONCAT(new.number,', ',new.status,', ',new.name,', ',rt.description),
+USER()
+FROM room r 
+INNER JOIN room_type rt
+ON r.room_typeID = rt.room_typeID 
 WHERE r.roomID = new.roomID
 --Kontroll
 Insert Into room(number,status,name,smoke,room_typeID)
@@ -105,14 +99,17 @@ Insert Into room(number,status,name,smoke,room_typeID)
 	select * from  room;
 	select* from logi;
 -- Trigger muudetud kirjete jälgimiseks linnad tabeli:
-INSERT INTO logi (kuupaev, andmed, kasutaja)
-    SELECT now(),
-           CONCAT('Vanad andmed: ',old.number,', ',old.status,', ',old.name,', ',rt1.description,' Uued andmed: ',new.number,', ',new.status,', ',new.name,', ',rt2.description),
-           USER()
-    FROM room r
-    INNER JOIN room_type rt1 ON old.room_typeID = rt1.room_typeID
-    INNER JOIN room_type rt2 ON new.room_typeID = rt2.room_typeID
-    where r.roomID = new.roomID
+DROP TRIGGER IF EXISTS `roomuendamine`;
+CREATE DEFINER=`root`@`localhost` 
+	TRIGGER `roomuendamine` 
+	BEFORE UPDATE ON `room` 
+	FOR EACH ROW INSERT INTO logi (kuupaev, andmed, kasutaja)
+	SELECT now(), CONCAT('Vanad andmed: ',old.number,', ',old.status,', ',old.name,', ',rt1.description,' Uued andmed: ',new.number,', ',new.status,', ',new.name,', ',rt2.description),
+	USER() FROM room r INNER JOIN room_type rt1 
+	ON old.room_typeID = rt1.room_typeID 
+	INNER JOIN room_type rt2
+	ON new.room_typeID = rt2.room_typeID
+	where r.roomID = new.roomID 
 --Kontroll
 update room
 set number='2',status='unreserved'
