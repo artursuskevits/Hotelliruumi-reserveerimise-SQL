@@ -21,8 +21,27 @@ INSERT INTO room_type (description, max_capacity)
 VALUES ('default',2);
 INSERT INTO room_type (description, max_capacity)
 VALUES ('cheap',3);
- 
-select * from room_type
+
+--rigger tabelisse lisatud kirjete jälgimiseks:
+CREATE TRIGGER roomlisamine
+ON room
+FOR INSERT
+AS 
+BEGIN
+    INSERT INTO logi (kuupaev, andmed, kasutaja)
+    SELECT GETDATE(),
+           CONCAT(inserted.number,', ',inserted.status,', ',inserted.name,', ',rt.description),
+           USER
+    FROM inserted
+    inner join room_type rt on inserted.room_typeID =rt.room_typeID
+END;
+
+Insert Into room(number,status,name,smoke,room_typeID)
+	Values ('1','booked','first room',1,2);
+	select * from  room;
+	select* from logi;
+-- Trigger muudetud kirjete jälgimiseks linnad tabeli:
+
 
 
 
