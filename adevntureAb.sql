@@ -1,10 +1,8 @@
 --Funkts. loomine 32
 create function fn_iltvf_getemplyees()
-
 returns table
 as
 return (Select EmployeeKey, FirstName,CASt(BirthDate as DAte) as Dob from DimEmployee)
-
 SELECT *
 FROM fn_iltvf_getemplyees();
 
