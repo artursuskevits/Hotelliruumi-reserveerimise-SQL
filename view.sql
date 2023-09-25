@@ -94,3 +94,47 @@ select * from vWemplyeesbydepartment
 
 update vWemplyeesbydepartment
 set deptname='It'where name ='Jhon'
+
+---41. Indekseeritud view-d
+Create table Product
+(Product int primary key,
+name varchar(50),
+unitprice int);
+
+
+insert into Product values(1,'Book',20)
+insert into Product values(2,'Clips',20)
+insert into Product values(3,'Pens',20)
+insert into Product values(4,'Penil',20)
+
+Create table productsales(
+Productid int,
+QuantitySold int 
+)
+
+Insert into productsales values(1,12)
+Insert into productsales values(2,14)
+Insert into productsales values(3,2)
+Insert into productsales values(4,32)
+Insert into productsales values(1,25)
+Insert into productsales values(2,15)
+Insert into productsales values(3,32)
+Insert into productsales values(4,22)
+Insert into productsales values(1,12)
+Insert into productsales values(2,22)
+
+Create view vWTotalSalesbyproduct 
+with SchemaBinding
+as
+Select Name,
+Sum(ISNull((QuantitySold*unitprice),0)) as TotalSales,
+Count_big(*) as TotalTarnsaction
+from dbo.productsales
+join dbo.Product
+on dbo.Product.Product = dbo.productsales.Productid
+group by name
+
+select * from vWTotalSalesbyproduct
+
+Create Unique Clustered INdex UIx_vWTotalSalesbyproduct_Name
+on vWTotalSalesbyproduct(name)
