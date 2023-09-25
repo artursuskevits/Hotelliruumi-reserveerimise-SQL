@@ -138,3 +138,46 @@ select * from vWTotalSalesbyproduct
 
 Create Unique Clustered INdex UIx_vWTotalSalesbyproduct_Name
 on vWTotalSalesbyproduct(name)
+
+--42. View piirangud
+
+Select * from DimEmployee4
+
+-- Error : Cannot pass Parameters to Views 
+Create View vWEmployeeDetails
+@Gender nvarchar(20)
+as
+Select id, name, gender, departmentId
+from  DimEmployee4
+where gender = @Gender
+
+
+Create function fnEmployeeDetails(@Gender nvarchar(20))
+Returns Table
+as
+Return 
+(Select id, name, gender, departmentid
+from DimEmployee4 where gender = @Gender)
+
+Select * from dbo.fnEmployeeDetails('Male')
+
+Create View vWEmployeeDetailsSorted
+as
+Select id, name, gender, departmentid
+from DimEmployee4
+order by id
+
+Create Table ##TestTempTable(Id int, Name nvarchar(20), Gender nvarchar(10))
+
+Insert into ##TestTempTable values(101, 'Martin', 'Male')
+Insert into ##TestTempTable values(102, 'Joe', 'Female')
+Insert into ##TestTempTable values(103, 'Pam', 'Female')
+Insert into ##TestTempTable values(104, 'James', 'Male')
+
+Select * from ##TestTempTable
+
+Create View vwOnTempTable
+as
+Select Id, Name, Gender
+from ##TestTempTable
+
