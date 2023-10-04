@@ -65,3 +65,11 @@ LEFT JOIN sys.tables T
 LEFT JOIN sys.views V
     ON TR.parent_id = V.object_id
 WHERE TR.parent_class = 1
+
+
+SELECT name,
+       parent_class_desc,
+       type_desc,
+       is_disabled
+FROM sys.triggers
+WHERE is_disabled = 0;
