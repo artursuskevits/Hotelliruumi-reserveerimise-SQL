@@ -56,3 +56,12 @@ DROP TABLE t1
  
 SELECT * FROM dbo.AuditTable
 
+SELECT QUOTENAME(OBJECT_SCHEMA_NAME(TR.object_id)) + '.' + QUOTENAME(TR.name) [Trigger_name],
+       QUOTENAME(OBJECT_SCHEMA_NAME(T.object_id)) + '.' + QUOTENAME(T.name) [Parent_table_name],                 
+       QUOTENAME(OBJECT_SCHEMA_NAME(V.object_id)) + '.' + QUOTENAME(V.name) [Parent_view_name]
+FROM sys.triggers TR
+LEFT JOIN sys.tables T
+    ON TR.parent_id = T.object_id
+LEFT JOIN sys.views V
+    ON TR.parent_id = V.object_id
+WHERE TR.parent_class = 1
